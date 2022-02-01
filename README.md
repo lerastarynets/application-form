@@ -17,6 +17,7 @@ This Project demonstrates the following:
 3. Express.js
 4. Axios
 5. MySQL
+6. Styled-components
 
 ## About
 
