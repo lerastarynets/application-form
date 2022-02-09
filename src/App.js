@@ -6,6 +6,7 @@ import Button from "./components/Button";
 import Input from "./components/Input";
 import Label from "./components/Label";
 import Textarea from "./components/Textarea";
+import SuccessMessage from "./components/SuccessMessage";
 
 const AppWrapper = styled.div`
   display: flex;
@@ -17,6 +18,7 @@ const App = () => {
   let [userName, setUserName] = useState("");
   let [userEmail, setUserEmail] = useState("");
   let [userMessage, setUserMessage] = useState("");
+  let [success, setSuccess] = useState(false);
 
   useEffect(() => {
     Axios.get("https://application-form-api.herokuapp.com/api/get").then(
@@ -32,6 +34,7 @@ const App = () => {
       userEmail,
       userMessage,
     });
+    setSuccess(true);
     setUserName("");
     setUserEmail("");
     setUserMessage("");
@@ -42,6 +45,7 @@ const App = () => {
       <Form>
         <Label>Name</Label>
         <Input
+          required
           placeholder="Your name"
           type="text"
           name="name"
@@ -52,6 +56,7 @@ const App = () => {
         />
         <Label>Email</Label>
         <Input
+          required
           placeholder="Your email"
           type="text"
           name="email"
@@ -62,6 +67,7 @@ const App = () => {
         />
         <Label>Message</Label>
         <Textarea
+          required
           placeholder="Your message"
           name="message"
           value={userMessage}
@@ -71,6 +77,11 @@ const App = () => {
         />
         <Button onClick={submitForm}>Send message</Button>
       </Form>
+      {success && (
+        <SuccessMessage>
+          Your message was succesfully uploaded to MySQL DB!
+        </SuccessMessage>
+      )}
     </AppWrapper>
   );
 };
