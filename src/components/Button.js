@@ -17,4 +17,11 @@ export default styled.button`
   text-align: center;
   transition: box-shadow 0.2s, -ms-transform 0.1s, -webkit-transform 0.1s,
     transform 0.1s;
+  &:disabled {
+    background-color: lightgrey;
+    opacity: 0.7;
+    border: none;
+    cursor: auto;
+    color: dimgrey;
+  }
 `;
